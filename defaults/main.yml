@@ -1,2 +1,4 @@
 ---
 # defaults file for Rice.vPRO-console-tty
+systemConsole: tty0
+vproConsole: ttyS1
