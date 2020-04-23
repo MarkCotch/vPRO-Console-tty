@@ -1,2 +1,15 @@
 ---
 # tasks file for Rice.vPRO-console-tty
+#
+# Find grub.cfg
+#- command: find /boot -name grub.cfg
+#  register: grub_cfg
+
+- lineinfile:
+    state: present
+    dest: /etc/default/grub
+    backrefs: yes
+    regexp: '^(GRUB_CMDLINE_LINUX=(?!.* console)\"[^\"]+)(\".*)'
+    line: '\1 console=tty0 console=ttyS1,115200n8\2'
+  notify: build grub.cfg
+
