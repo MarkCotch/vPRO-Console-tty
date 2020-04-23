@@ -2,3 +2,7 @@
 # defaults file for Rice.vPRO-console-tty
 systemConsole: tty0
 vproConsole: ttyS1
+ttySpeed: 115200
+ttyWordSize: 8
+ttyParity: n
+

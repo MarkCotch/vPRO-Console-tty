@@ -10,6 +10,6 @@
     dest: /etc/default/grub
     backrefs: yes
     regexp: '^(GRUB_CMDLINE_LINUX=(?!.* console)\"[^\"]+)(\".*)'
-    line: '\1 console=tty0 console=ttyS1,115200n8\2'
+    line: '\1 console={{ systemConsole }} console={{ vproConsole }},{{ ttySpeed }}{{ ttyParity }}{{ ttyWordSize }}\2'
   notify: build grub.cfg
 

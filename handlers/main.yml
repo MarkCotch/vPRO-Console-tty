@@ -2,6 +2,13 @@
 # handlers file for Rice.vPRO-console-tty
 #
 # Find grub.cfg
+#
+- shell: /usr/bin/grub2-editenv - unset kernelopts
+  when: 
+  - ansible_distribution_major_version == "8"
+  listen: build grub.cfg
+  
+
 - shell: 'for f in $(find /boot -name grub.cfg) ; do /usr/sbin/grub2-mkconfig -o ${f} ; done'
   listen: build grub.cfg
 
