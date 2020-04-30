@@ -8,8 +8,22 @@
 - lineinfile:
     state: present
     dest: /etc/default/grub
+    regexp: '^.{0,1}GRUB_TERMINAL_OUTPUT.*$'
+    line: 'GRUB_TERMINAL_OUTPUT="serial console" '
+  notify: build grub.cfg
+
+- lineinfile:
+    state: present
+    dest: /etc/default/grub
+    regexp: '^.{0,1}GRUB_SERIAL_COMMAND.*$'
+    line: 'GRUB_SERIAL_COMMAND="serial --speed={{ ttySpeed }} --unit=1 --word={{ ttyWordSize }} --parity={{ ttyParity }} --stop={{ ttyStopBit }}" '
+  notify: build grub.cfg
+
+- lineinfile:
+    state: present
+    dest: /etc/default/grub
     backrefs: yes
     regexp: '^(GRUB_CMDLINE_LINUX=(?!.* console)\"[^\"]+)(\".*)'
     line: '\1 console={{ systemConsole }} console={{ vproConsole }},{{ ttySpeed }}{{ ttyParity }}{{ ttyWordSize }}\2'
   notify: build grub.cfg
-
+  
