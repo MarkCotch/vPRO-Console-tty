@@ -16,7 +16,7 @@
     state: present
     dest: /etc/default/grub
     regexp: '^.{0,1}GRUB_SERIAL_COMMAND.*$'
-    line: 'GRUB_SERIAL_COMMAND="serial --speed={{ ttySpeed }} --unit=1 --word={{ ttyWordSize }} --parity={{ ttyParity }} --stop={{ ttyStopBit }}" '
+    line: 'GRUB_SERIAL_COMMAND="serial --speed={{ ttySpeed }} --unit={{ vproConsole[-1] }} --word={{ ttyWordSize }} --parity={{ ttyParity }} --stop={{ ttyStopBit }}" '
   notify: build grub.cfg
 
 - lineinfile:
