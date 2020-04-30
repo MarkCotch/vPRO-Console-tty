@@ -5,4 +5,4 @@ vproConsole: ttyS1
 ttySpeed: 115200
 ttyWordSize: 8
 ttyParity: n
-
+ttyStopBit: 1
