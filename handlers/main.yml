@@ -11,6 +11,6 @@
   
 
 - name: Build grub menu
-  shell: 'for f in $(find /boot -name grub.cfg) ; do /usr/sbin/grub2-mkconfig -o ${f} ; done'
+  shell: 'for f in $(find /boot -type f -name grub.cfg) ; do /usr/sbin/grub2-mkconfig -o ${f} ; done'
   listen: build grub.cfg
 
